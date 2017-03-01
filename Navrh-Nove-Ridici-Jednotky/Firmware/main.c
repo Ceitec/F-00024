@@ -13,6 +13,14 @@ Nastavení fuse bits
 	Bez Bootloader režimu
 */
 
+/*
+Nastavení fuse bits
+	High		0x90
+	Low			0xD7
+	Extended	0xFC
+	S Bootloader režimem
+*/
+
 
 
 #include <avr/io.h>
@@ -157,9 +165,10 @@ void try_receive_data_uart1( void )
 
 int main(void)
 {
-	
+	// Nastavení UART0 rychlosti (USB -> MCU)
 	UB = UART0_DEFAULT_BAUD;
 	uart0_error = uart0_init(UB);
+	// Nastavení UART1 rychlosti (MCU -> RS485)
 	UB = UART1_DEFAULT_BAUD;
 	uart1_error = uart1_init(UB);
 	uart0_interrupt_rx(TRUE);
@@ -167,6 +176,7 @@ int main(void)
 	uart1_interrupt_rx(TRUE);
 	uart1_interrupt_tx(TRUE);
 	
+	// První nahrání firmware a inicializace
 	TB_Init0();
 	TB_Init1();
 	
