@@ -38,6 +38,11 @@ void Init_Board( void )
 	cbi(PORTD, PORTD7);
 	cbi(PORTD, PORTD6);
 	
+	// Testovací výstupy
+	sbi(DDRA, DDA3);
+	sbi(DDRA, DDA4);
+	sbi(DDRA, DDA5);
+	sbi(DDRA, DDA6);
 
 	
 	// Povolení pøijmu dat

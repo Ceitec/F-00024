@@ -346,7 +346,7 @@ void TB_Init1( void )
 	{
 		// not valid data in eeprom
 		TB_gbparam1.eemagic = 66;
-		TB_gbparam1.baud = 10;
+		TB_gbparam1.baud = 7;
 		TB_gbparam1.address = MODULE_ADDRESS;
 		TB_gbparam1.telegram_pause_time = 0;
 		TB_gbparam1.host_address = 2;

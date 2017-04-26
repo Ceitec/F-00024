@@ -106,6 +106,7 @@ ISR(UART0_RX_vect)
 {
 	citacka0=0;
 	LED2_OFF;
+	nbi(PORTA, DDA5);
 	tmpUart0.tmpData = UART0_UDR;
  	tmpUart0.tmpStatus = UART0_UCSRA;
 	tmpUart0.tmpTimer =	DEFAULT_TIMEOUT;
@@ -114,6 +115,7 @@ ISR(UART0_RX_vect)
 
 ISR(UART0_TX_vect)
 {
+	nbi(PORTA, DDA6);
 	if (uart0_tx_flag)
 	{
 		//Odeslání 9 bytù dat
@@ -145,9 +147,10 @@ uint8_t check_uart0( void )
 		uart0_rx_flag = TRUE;
 	}
 	// Vypnutí pøerušení pøed kontrolou dat
-	cli();
+	
 	if (uart0_rx_flag)
 	{
+		cli();
 		uart0_sum=0;
 		uart0_i=0;
 		for (uart0_i=9; uart0_i>1; uart0_i--)
@@ -168,12 +171,13 @@ uint8_t check_uart0( void )
 		}
 		// Vynulování crc
 		uart0_check_sum=0;
+		sei();
 	}
 	else
 	{
 		uart0_ret = 0;
 	}
-	sei();
+	
 	uart0_rx_flag=FALSE;
 	return uart0_ret;
 	

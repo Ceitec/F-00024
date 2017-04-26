@@ -189,7 +189,10 @@ int main(void)
 	// Hlavní smyèka programu
 	while (1) 
     {
-		
+// 		sbi(PORTA, DDA3);
+// 		sbi(PORTA, DDA4);
+// 		sbi(PORTA, DDA5);
+// 		sbi(PORTA, DDA6);
 		// Odeslání uart0 na uart1, nebo-li data z USB na RS485.
  		try_receive_data_uart0();
 
